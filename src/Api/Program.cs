@@ -1,8 +1,11 @@
 using Api.Services;
+using Binance.Net.Clients;
 using Oakton;
+using Wolverine;
 using Wolverine.Http;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseWolverine();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -10,6 +13,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(x => new DataProvider());
+builder.Services.AddScoped(x => new BinanceRestClient());
+builder.Services.AddScoped(
+    x =>
+        new ScreenerService(
+            x.GetRequiredService<DataProvider>(),
+            x.GetRequiredService<BinanceRestClient>()
+        )
+);
 
 var app = builder.Build();
 
