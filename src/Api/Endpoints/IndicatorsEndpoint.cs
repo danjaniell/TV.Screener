@@ -10,12 +10,20 @@ public class IndicatorsEndpoint(ScreenerService screenerService)
     private readonly ScreenerService _screenerService = screenerService;
 
     [WolverineGet("/getAlma")]
-    public async Task<Results<Ok<IEnumerable<AlmaResult>>, NotFound>> GetAlma(HttpContext context)
+    public async Task<
+        Results<
+            Ok<IEnumerable<(DateTime, IEnumerable<double>, IEnumerable<(double, double, double)>)>>,
+            NotFound
+        >
+    > GetAlma()
     {
-        var cancellationToken = context.RequestAborted;
         return
-            (await _screenerService.GetAlma(9, cancellationToken))
-                is IEnumerable<AlmaResult> results
+            (await _screenerService.GetMAMA(9))
+                is IEnumerable<(
+                    DateTime,
+                    IEnumerable<double>,
+                    IEnumerable<(double, double, double)>
+                )> results
             ? TypedResults.Ok(results)
             : TypedResults.NotFound();
     }
