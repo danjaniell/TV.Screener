@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{46904C90-8E96-450C-A3BB-D14A4DE891EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{781D2A50-043C-495F-A5FE-4804392B74A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{781D2A50-043C-495F-A5FE-4804392B74A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{781D2A50-043C-495F-A5FE-4804392B74A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{781D2A50-043C-495F-A5FE-4804392B74A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{781D2A50-043C-495F-A5FE-4804392B74A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{781D2A50-043C-495F-A5FE-4804392B74A9} = {46904C90-8E96-450C-A3BB-D14A4DE891EE}
+	EndGlobalSection
+EndGlobal
