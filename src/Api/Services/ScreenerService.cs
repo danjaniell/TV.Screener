@@ -21,9 +21,7 @@ public class ScreenerService(
     /// <param name="days"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public async Task<
-        IEnumerable<(DateTime, IEnumerable<double>, IEnumerable<(double, double, double)>)>
-    > GetMAMA(int days)
+    public async Task<IEnumerable<MaMaRecord>> GetMAMA(int days)
     {
         var quotes = await _dataProvider.GetQuotes(_watchList, _binanceClient);
 
@@ -48,11 +46,16 @@ public class ScreenerService(
         var aggregatedResults = groupedResults.Select(group =>
         {
             var date = group.Key;
-            var almaValue = group.OfType<AlmaResult>().Select(x => x.Alma ?? 0);
-            var macdValue = group
-                .OfType<MacdResult>()
-                .Select(x => (x.Macd ?? 0, x.Signal ?? 0, x.Histogram ?? 0));
-            return (date, almaValue, macdValue);
+            var almaResult = group.OfType<AlmaResult>().FirstOrDefault();
+            var macdResult = group.OfType<MacdResult>().FirstOrDefault();
+
+            return new MaMaRecord(
+                date,
+                almaResult?.Alma ?? 0,
+                macdResult?.Macd ?? 0,
+                macdResult?.Signal ?? 0,
+                macdResult?.Histogram ?? 0
+            );
         });
 
         return aggregatedResults;
