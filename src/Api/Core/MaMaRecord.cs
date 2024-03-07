@@ -9,5 +9,6 @@ public record MaMaRecord(
     double AlmaValue,
     double MacdValue,
     double MacdSignal,
-    double MacdHistogram
+    double MacdHistogram,
+    bool HasBuySignal
 );

@@ -61,7 +61,8 @@ public class ScreenerService(
                 almaResult?.Alma ?? 0,
                 macdResult?.Macd ?? 0,
                 macdResult?.Signal ?? 0,
-                macdResult?.Histogram ?? 0
+                macdResult?.Histogram ?? 0,
+                macdResult?.Macd > macdResult?.Signal && quote?.Close > (decimal)almaResult?.Alma!
             );
         });
 
